@@ -32,12 +32,7 @@
     <% end %>
 
     <div class="sidebar__section">
-      <%# The folder tree IS your library; its public face lives on your
-          profile, so there's no separate page to link to. %>
       <h3 class="sidebar__heading">Folders</h3>
-      <%# "My Plans" is the root of your library; every folder is its child,
-          the way a drive hangs everything off one root. (One day a "+" up
-          on the heading will add more libraries next to it.) %>
       <ul class="folder-tree folder-tree--rooted">
         <li class="folder-tree__node folder-tree__node--root">
           <%= link_to workspace_path(folder: nil),
@@ -111,9 +106,6 @@
       <h3 class="sidebar__heading">Hidden</h3>
       <ul class="sidebar__list">
         <li>
-          <%# These read as reveals, not filters: private and archived plans
-              are excluded by default, and clicking opts IN to seeing them
-              ("show me my private plans"), click again to tuck them away. %>
           <%# "Private" is visibility, not workflow: not shared with the org,
               still readable by link. Stored as visibility=draft. %>
           <%= link_to @filter == "draft" ? "Showing private" : "Show my private plans",
@@ -121,8 +113,6 @@
                 class: "sidebar__item #{'sidebar__item--active' if @filter == 'draft'}" %>
         </li>
         <li>
-          <%# Archived plans are hidden everywhere else — this is the explicit
-              opt-in view. %>
           <%= link_to @filter == "archived" ? "Showing archived" : "Show archived",
                 workspace_path(filter: @filter == "archived" ? nil : "archived"),
                 class: "sidebar__item sidebar__item--archived #{'sidebar__item--active' if @filter == 'archived'}" %>

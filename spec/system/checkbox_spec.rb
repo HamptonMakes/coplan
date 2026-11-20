@@ -74,14 +74,12 @@ RSpec.describe "Interactive checkboxes", type: :system do
 
     initial_version_count = CoPlan::PlanVersion.count
 
-    # Find the first unchecked checkbox ("Write documentation")
     checkbox = all('input[type="checkbox"]').first
     expect(checkbox).not_to be_checked
 
     checkbox.click
     expect(checkbox).to be_checked
 
-    # Wait for the server response by checking the version was created
     wait_for_version(plan, 2)
 
     plan.reload

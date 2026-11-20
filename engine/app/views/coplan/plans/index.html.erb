@@ -5,8 +5,6 @@
   <meta name="turbo-cache-control" content="no-cache">
 <% end %>
 
-<%# No folder picker here: rows file via drag & drop, and the plan page's
-    toolbar (Save / Move to folder…) covers the click path. %>
 <div class="workspace" data-controller="coplan--folder-dnd coplan--workspace-keys">
   <%= render "coplan/plans/sidebar" %>
 
@@ -47,7 +45,6 @@
       </button>
     </nav>
 
-    <%# Creates inside the folder you're looking at (changeable). %>
     <%= render layout: "coplan/shared/add_modal", locals: { id: "new-folder-modal", title: "New folder" } do %>
       <%# model: a fresh record — a bare scope: :folder would silently bind
           the @folder being viewed and prefill its name. %>
@@ -71,8 +68,6 @@
 
     <% active_filters = [] %>
     <% if @scope == "all" %>
-      <%# Reachable from Home's tag links etc. — the sidebar no longer
-          offers it, so show it as a clearable state, not a mode. %>
       <% active_filters << ["Everyone’s plans", workspace_path(scope: nil)] %>
     <% end %>
     <% if params[:tag].present? %>
@@ -177,8 +172,6 @@
         </div>
       <% end %>
     <% else %>
-      <%# Flat results: narrowed by filter/tag/type/date, scoped to the
-          current folder's subtree. %>
       <% if @plans.any? %>
         <div class="plans-list">
           <%= render "coplan/plans/plan_page", plans: @plans,
