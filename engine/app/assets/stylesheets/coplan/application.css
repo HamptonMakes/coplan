@@ -2231,9 +2231,6 @@ img.avatar {
   margin-right: 0;
 }
 
-/* No label anymore — the lone collapse control floats into the top-right
-   corner so the outline starts at the very top (no empty header band where
-   "Contents" used to sit) and the first item's text flows beside it. */
 .content-nav__header {
   float: right;
   margin-left: var(--space-xs);
@@ -2638,12 +2635,6 @@ img.avatar {
   margin-top: var(--space-sm);
 }
 
-/* Plan document + footnotes: one page, no tabs. The document is the main
-   glass card; references and attachments follow like back matter — same
-   page, quieter surface. */
-/* Back matter lives inside the content column, closing out the document
-   after a rule — no card-within-card, no space below the sidebar. Empty
-   sections are a single quiet line. */
 .plan-footnotes {
   margin-top: var(--space-2xl);
   padding-top: var(--space-lg);
@@ -4527,7 +4518,6 @@ img.avatar {
   margin-left: var(--space-xs);
 }
 
-/* A plan's first appearance gets a whisper of accent — not a badge. */
 .home__item-activity--new {
   color: var(--color-primary);
 }
@@ -5065,7 +5055,6 @@ img.avatar {
   padding: 0;
   display: flex;
   flex-direction: column;
-  /* Roomy enough to scan — this read as one bunched block at 2px. */
   gap: var(--space-sm);
 }
 
@@ -5487,7 +5476,6 @@ img.avatar {
     overflow-wrap: anywhere;
   }
 
-  /* At phone widths the byline can wrap under itself freely. */
   .page-header__byline {
     flex-wrap: wrap;
   }
@@ -5505,7 +5493,6 @@ img.avatar {
     flex-wrap: wrap;
   }
 
-  /* Comment surfaces clamp to the viewport instead of overflowing it. */
   .comment-form {
     width: min(360px, calc(100vw - 2 * var(--space-md)));
   }
@@ -5514,7 +5501,6 @@ img.avatar {
     width: min(380px, calc(100vw - 2 * var(--space-md)));
   }
 
-  /* Strip rows stack their meta under the title instead of squeezing it. */
   .recent-updates__item,
   .attention__item {
     flex-wrap: wrap;

@@ -24,9 +24,6 @@
   <body>
     <nav class="site-nav">
       <div class="site-nav__inner">
-        <%# The logo is the Workspace home — that's where signed-in work
-            lives, so there's no separate "Workspace" link. Signed-out
-            visitors land on the public root instead. %>
         <%= link_to(signed_in? ? coplan.plans_path : coplan.root_path, class: "site-nav__brand") do %>
           <%= image_tag "coplan/coplan-logo-sm.png", alt: "CoPlan",
                 class: "site-nav__logo#{coplan_environment_logo_modifier}",
@@ -40,10 +37,6 @@
               bar reads the same on every surface. %>
           <%= yield :nav_title %>
           <div class="site-nav__right">
-            <%# Two persistent controls plus notifications: Search (jump to a
-                doc/person), the notifications bell, and the menu. Everything
-                that isn't reading, searching, or a live alert lives in the
-                menu, so the bar stays calm while you read. %>
             <button type="button"
                     class="site-nav__search"
                     aria-label="Search plans and people"
@@ -72,8 +65,6 @@
                 <% end %>
               </div>
             </div>
-            <%# One menu for the low-priority surface (Feed) and account.
-                Reuses the app's popover menu (native light-dismiss + Esc). %>
             <span class="site-nav__menu" data-controller="coplan--menu">
               <button type="button" class="site-nav__menu-btn"
                       popovertarget="nav-menu" data-coplan--menu-target="trigger"

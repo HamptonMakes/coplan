@@ -158,8 +158,6 @@ module CoPlan
       PlanViewer.track(plan: @plan, user: current_user)
     end
 
-    # A full page (reached from the header's clock icon), not a tab —
-    # Backspace or the back link returns to the document.
     def history
       authorize!(@plan, :show?)
       @history_items = @plan.history_items

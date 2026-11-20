@@ -92,7 +92,6 @@ function hasDirtyDrafts() {
 function showStaleBanner(targetEl, revision) {
   let banner = document.getElementById("plan-stale-banner")
   if (banner) {
-    // Already showing — just bump the revision number.
     const span = banner.querySelector("[data-revision]")
     if (span && revision) span.textContent = String(revision)
     return
@@ -115,7 +114,6 @@ function showStaleBanner(targetEl, revision) {
     window.location.reload()
   })
 
-  // Insert directly above the stale content so the connection is visually obvious.
   targetEl.parentNode.insertBefore(banner, targetEl)
 }
 

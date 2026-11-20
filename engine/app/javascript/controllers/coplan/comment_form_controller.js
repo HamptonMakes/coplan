@@ -88,7 +88,6 @@ export default class extends Controller {
       }
     }
 
-    // Submit-on-Enter (only when picker is closed).
     if (event.key === "Enter" && !event.shiftKey && !event.isComposing) {
       const form = this.element.closest("form")
       if (!form) return
@@ -133,13 +132,11 @@ export default class extends Controller {
         // Must be at start-of-text or preceded by whitespace/punctuation.
         if (/[\s(\[]/.test(before) || i === 0) {
           const query = value.slice(i + 1, caret)
-          // Bail if the in-progress query contains whitespace or markdown chars.
           if (/[\s\]\)]/.test(query)) return null
           return { start: i, query }
         }
         return null
       }
-      // Stop if we hit whitespace before finding `@`.
       if (/\s/.test(ch)) return null
       i--
     }

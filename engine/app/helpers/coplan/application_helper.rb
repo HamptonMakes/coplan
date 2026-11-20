@@ -51,7 +51,6 @@ module CoPlan
       profile_path(user.username.presence || user.id)
     end
 
-    # Author names everywhere in the app link to profiles.
     def profile_link(user, css_class: "profile-link")
       return "" unless user
       link_to user.name, profile_path_for(user), class: css_class

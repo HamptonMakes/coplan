@@ -35,7 +35,6 @@ export default class extends Controller {
   // Fires when the popover opens or closes (newState: "open" | "closed").
   onToggle(event) {
     if (event.newState === "open") {
-      // Focus the input and clear it so each open starts fresh.
       requestAnimationFrame(() => {
         this.inputTarget.focus()
         this.inputTarget.select()
@@ -45,13 +44,11 @@ export default class extends Controller {
     }
   }
 
-  // Debounced input handler — schedules a frame fetch.
   onInput() {
     this._cancelDebounce()
     this._debounceTimer = setTimeout(() => this._fetchResults(), this.debounceValue)
   }
 
-  // Keyboard nav within the input box.
   onKeydown(event) {
     const items = this._resultItems()
     switch (event.key) {
@@ -72,7 +69,6 @@ export default class extends Controller {
     }
   }
 
-  // Clicking a recent-search row pre-fills the input and triggers a search.
   selectRecent(event) {
     event.preventDefault()
     const query = event.currentTarget.dataset.searchRecentQuery

@@ -49,14 +49,10 @@
   <% if @plan.current_content.present? %>
     <div class="plan-layout" data-controller="coplan--text-selection coplan--content-nav coplan--checkbox coplan--changed-sections" data-coplan--text-selection-focus-thread-value="<%= params[:thread] %>" data-action="keydown.esc@document->coplan--text-selection#dismiss" data-coplan--checkbox-revision-value="<%= @plan.current_revision %>" data-coplan--checkbox-toggle-url-value="<%= toggle_checkbox_plan_path(@plan) %>" data-coplan--changed-sections-keys-value="<%= @changed_section_keys.to_json %>">
       <nav class="content-nav" data-coplan--content-nav-target="sidebar" aria-label="Document outline">
-        <%# No "Contents" label — the outline speaks for itself, and the plan
-            title now lives in the sticky nav. Just the collapse control. %>
         <div class="content-nav__header">
           <button type="button" class="content-nav__toggle" data-action="coplan--content-nav#toggle" data-coplan--content-nav-target="toggleBtn" aria-label="Hide table of contents" title="Toggle (t)">✕</button>
         </div>
         <ul class="content-nav__list" data-coplan--content-nav-target="list"></ul>
-        <%# The document's back matter, one hop below the outline — slightly
-            set apart so it reads as "after the document", not part of it. %>
         <ul class="content-nav__list content-nav__list--footnotes">
           <%# ids: the reference/attachment Turbo Streams keep these counts
               live alongside the footnote headers' own counters. %>
@@ -107,7 +103,6 @@
     <div class="empty-state">
       <p>This plan has no content yet.</p>
     </div>
-    <%# No content, no layout columns — back matter still belongs on the page. %>
     <%= render partial: "coplan/plans/footnotes",
           locals: { plan: @plan, references: @references, attachments: @attachments } %>
   <% end %>

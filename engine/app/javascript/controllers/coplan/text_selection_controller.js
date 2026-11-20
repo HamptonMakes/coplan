@@ -65,13 +65,11 @@ export default class extends Controller {
   }
 
   dismiss(event) {
-    // Close the comment form if it's visible
     if (this.hasFormTarget && this.formTarget.style.display === "block") {
       event.preventDefault()
       this.hideAndResetForm()
       return
     }
-    // Close the selection popover if it's visible
     if (this.hasPopoverTarget && this.popoverTarget.style.display === "block") {
       event.preventDefault()
       this.popoverTarget.style.display = "none"
@@ -79,7 +77,6 @@ export default class extends Controller {
   }
 
   handleDocumentMouseDown(event) {
-    // Hide popover if clicking outside it
     if (this.hasPopoverTarget && !this.popoverTarget.contains(event.target)) {
       this.popoverTarget.style.display = "none"
     }
@@ -126,7 +123,6 @@ export default class extends Controller {
     this.selectedContext = this.extractContext(range, text)
     this.selectedOccurrence = this.computeOccurrence(range, text)
 
-    // Position popover near the selection
     const rect = range.getBoundingClientRect()
     const contentRect = this.contentTarget.getBoundingClientRect()
 
@@ -139,7 +135,6 @@ export default class extends Controller {
     event.preventDefault()
     if (!this.selectedText) return
 
-    // Set the anchor text, surrounding context, and occurrence index
     this.anchorInputTarget.value = this.selectedText
     this.contextInputTarget.value = this.selectedContext || ""
     this.occurrenceInputTarget.value = this.selectedOccurrence != null ? this.selectedOccurrence : ""
@@ -172,10 +167,8 @@ export default class extends Controller {
     }
     this.popoverTarget.style.display = "none"
 
-    // Clear browser selection
     window.getSelection().removeAllRanges()
 
-    // Focus textarea without scrolling the page
     const textarea = this.formTarget.querySelector("textarea")
     if (textarea) {
       textarea.focus({ preventScroll: true })
@@ -227,12 +220,10 @@ export default class extends Controller {
 
     const occurrence = event.currentTarget.dataset.anchorOccurrence
 
-    // Remove existing highlights first
     this.contentTarget.querySelectorAll(".anchor-highlight--active").forEach(el => {
       el.classList.remove("anchor-highlight--active")
     })
 
-    // Build full text for position lookups
     this.fullText = this.contentTarget.textContent
 
     const highlighted = this.findAndHighlight(anchor, occurrence, "anchor-highlight--active")
@@ -579,7 +570,6 @@ export default class extends Controller {
     const activeThreadId = this._activeMark?.dataset.threadId
     const activeMode = this._openMode
 
-    // Remove existing anchor highlights before re-highlighting
     this.contentTarget.querySelectorAll("mark.anchor-highlight").forEach(mark => {
       const parent = mark.parentNode
       while (mark.firstChild) parent.insertBefore(mark.firstChild, mark)
@@ -587,7 +577,6 @@ export default class extends Controller {
     })
     this.contentTarget.normalize()
 
-    // Build full text once for position lookups
     this.fullText = this.contentTarget.textContent
 
     const threads = this.element.querySelectorAll("[data-anchor-text]")

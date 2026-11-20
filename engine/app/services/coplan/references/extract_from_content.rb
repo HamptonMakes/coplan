@@ -16,7 +16,6 @@ module CoPlan
 
         found_urls = extract_urls(content)
 
-        # Remove extracted references for URLs no longer in content
         @plan.references.extracted.where.not(url: found_urls.keys).delete_all
 
         # Batch-check plan existence for plan-type references
@@ -26,7 +25,6 @@ module CoPlan
           .reject { |id| id == @plan.id }
         existing_plan_ids = candidate_plan_ids.any? ? Plan.where(id: candidate_plan_ids).pluck(:id).to_set : Set.new
 
-        # Create or update references for found URLs
         found_urls.each do |url, meta|
           ref_type = Reference.classify_url(url)
           target_plan_id = nil
